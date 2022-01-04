@@ -80,7 +80,12 @@ jobs:
         $GITHUB_WORKSPACE/$DIY_P1_SH
         
     - name: Update feeds
-      run: cd openwrt && ./scripts/feeds update -a
+      run: |
+        cd openwrt
+        ./scripts/feeds update -a
+        rm -rf ./feeds/sundaqiang/packages
+        rm -rf ./feeds/sundaqiang/luci/applications/luci-app-passwall
+        rm -rf ./feeds/sundaqiang/luci/applications/luci-app-unblockneteasemusic
       
     - name: Install feeds
       run: cd openwrt && ./scripts/feeds install -a -f
