@@ -15,6 +15,6 @@
 
 # Add a feed source
 #echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
-echo 'src-git sundaqiang https://github.com/sundaqiang/openwrt-packages.git' >>feeds.conf.default
+echo 'src-git sundaqiang https://github.com/sundaqiang/openwrt-packages-backup' >>feeds.conf.default
 echo 'src-git kiddin9 https://github.com/kiddin9/openwrt-bypass.git' >>feeds.conf.default
-echo 'src-git DevOpenWRT https://github.com/DevOpenWRT-Router/luci-app-rebootschedule.git' >>feeds.conf.default
+
