@@ -87,9 +87,6 @@ jobs:
     - name: Install feeds
       run: |
         cd openwrt
-        rm -rf ./feeds/sundaqiang/packages
-        rm -rf ./feeds/sundaqiang/luci/applications/luci-app-passwall
-        rm -rf ./feeds/sundaqiang/luci/applications/luci-app-unblockneteasemusic 
         ./scripts/feeds install -a -f
 
     - name: Openwrt AutoUpdate
