@@ -91,6 +91,7 @@ jobs:
 
     - name: Openwrt AutoUpdate
       run: |
+        cp -f files/package/emortal/default-settings/files/99-default-settings openwrt/package/emortal/default-settings/files
         TEMP=$(date +"OpenWrt_%Y%m%d_%H%M%S_")$(git rev-parse --short HEAD)
         echo "RELEASE_TAG=$TEMP" >> $GITHUB_ENV
         #required>>add "DISTRIB_GITHUB" to "zzz-default-settings"
