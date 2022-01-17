@@ -28,8 +28,11 @@ echo "log-facility=/dev/null" >> /etc/dnsmasq.conf
 rm -rf /tmp/luci-modulecache/
 rm -f /tmp/luci-indexcache
 
-sed -i 's/ImmortalWrt/OpenWrt/g'  /etc/openwrt_release
-sed -i 's/ImmortalWrt/OpenWrt/g'  /usr/lib/os-release
+sed -i 's/[Ii]mmortalWrt/OpenWrt/g' /etc/openwrt_release
+sed -i 's/[Ii]mmortalWrt/OpenWrt/g' /usr/lib/os-release
+sed -i 's/[Ii]mmortalWrt/OpenWrt/g' /etc/device_info
+sed -i 's/[Ii]mmortalWrt/OpenWrt/g' /etc/openwrt_banner
+sed -i 's/[Ii]mmortalWrt/OpenWrt/g' /etc/config/luci
 
 
 exit 0
