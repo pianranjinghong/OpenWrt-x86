@@ -16,7 +16,8 @@
 # Add a feed source
 #echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
 git clone https://github.com/sundaqiang/openwrt-packages package/sundaqiang
-git clone https://github.com/QiuSimons/openwrt-mos package/QiuSimons/openwrt-modns
+git clone https://github.com/sbwml/luci-app-mosdns package/sbwml/luci-app-mosdns
+git clone https://github.com/sbwml/v2ray-geodata package/sbwml/luci-app-mosdns
 git clone https://github.com/kiddin9/openwrt-bypass package/kiddin9/openwrt-bypass
 git clone https://github.com/xiaorouji/openwrt-passwall2 package/xiaorouji/openwrt-passwall2
 git clone -b packages https://github.com/xiaorouji/openwrt-passwall package/xiaorouji/openwrt-passwall
