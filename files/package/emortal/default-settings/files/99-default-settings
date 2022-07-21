@@ -28,7 +28,7 @@ echo "log-facility=/dev/null" >> /etc/dnsmasq.conf
 rm -rf /tmp/luci-modulecache/
 rm -f /tmp/luci-indexcache
 
-mv /etc/openwrt_banner /etc/banner
+# mv /etc/openwrt_banner /etc/banner
 
 sed -i 's/[Ii]mmortal[Ww]rt/OpenWrt/g' /etc/openwrt_release
 sed -i 's/[Ii]mmortal[Ww]rt/OpenWrt/g' /usr/lib/os-release
