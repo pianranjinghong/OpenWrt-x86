@@ -13,9 +13,6 @@ rm -f /www/luci-static/resources/view/status/include/80_upnp.js
 
 ln -sf /sbin/ip /usr/bin/ip
 
-sed -i "s/# //g" /etc/opkg/distfeeds.conf
-
-sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' /etc/shadow
 [ -f '/bin/bash' ] && sed -i 's|root:x:0:0:root:/root:/bin/ash|root:x:0:0:root:/root:/bin/bash|g' /etc/passwd
 
 sed -i '/option disabled/d' /etc/config/wireless
@@ -29,12 +26,5 @@ rm -rf /tmp/luci-modulecache/
 rm -f /tmp/luci-indexcache
 
 mv /etc/openwrt_banner /etc/banner
-
-sed -i 's/[Ii]mmortal[Ww]rt/OpenWrt/g' /etc/openwrt_release
-sed -i 's/[Ii]mmortal[Ww]rt/OpenWrt/g' /usr/lib/os-release
-sed -i 's/[Ii]mmortal[Ww]rt/OpenWrt/g' /etc/device_info
-sed -i 's/[Ii]mmortal[Ww]rt/OpenWrt/g' /etc/openwrt_banner
-sed -i 's/[Ii]mmortal[Ww]rt/OpenWrt/g' /etc/config/luci
-
 
 exit 0
