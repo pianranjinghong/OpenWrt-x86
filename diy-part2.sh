@@ -23,4 +23,4 @@ sed -i 's/[Ii]mmortal[Ww]rt/OpenWrt/g' package/emortal/default-settings/files/op
 #sed -i 's/+uhttpd +uhttpd-mod-ubus //g' feeds/luci/collections/luci/Makefile    # 删除uhttpd
 #sed -i '/CYXluq4wUazHjmCDBCqXF/d' package/lean/default-settings/files/zzz-default-settings    # 设置密码为空
 #sed -i 's/PATCHVER:=5.4/PATCHVER:=5.10/g' target/linux/x86/Makefile   # x86机型,默认内核5.4，修改内核为5.10
-rm -rf package/xiaorouji/openwrt-passwall/v2ray-geodata   # 删除v2ray-geodata
+
