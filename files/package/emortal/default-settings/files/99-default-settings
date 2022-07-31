@@ -27,4 +27,9 @@ rm -f /tmp/luci-indexcache
 
 mv /etc/openwrt_banner /etc/banner
 
+sed -i '/DISTRIB_VERSIONS/d' /etc/openwrt_release
+sed -i '/DISTRIB_GITHUB/d' /etc/openwrt_release
+sed -i '/DISTRIB_DESCRIPTION/d' /etc/openwrt_release
+echo "DISTRIB_DESCRIPTION='OpenWrt '" >> /etc/openwrt_release
+
 exit 0
