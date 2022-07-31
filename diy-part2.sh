@@ -12,8 +12,8 @@
 
 # Modify default IP
 sed -i 's/192.168.1.1/192.168.50.5/g' package/base-files/files/bin/config_generate   # 修改默认ip
-sed -i 's/ImmortalWrt/OpenWrt/g' package/base-files/files/bin/config_generate
-#sed -i 's/[Ii]mmortal[Ww]rt/OpenWrt/g' package/emortal/default-settings/files/openwrt_banner
+sed -i 's/ImmortalWrt/OpenWrt/g' package/base-files/files/bin/config_generate    # 修改主机名
+sed -i 's/ImmortalWrt/OpenWrt/g' include/version.mk    # 修改版本名
 sed -i 's/geoip-only-cn-private.dat/geoip.dat/g' package/QiuSimons/openwrt-mosdns/v2ray-geodata/Makefile   # 修改geoip.dat
 
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile   # 选择argon为默认主题
