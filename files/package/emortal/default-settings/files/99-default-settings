@@ -31,5 +31,5 @@ sed -i '/DISTRIB_VERSIONS/d' /etc/openwrt_release
 sed -i '/DISTRIB_GITHUB/d' /etc/openwrt_release
 sed -i '/DISTRIB_DESCRIPTION/d' /etc/openwrt_release
 echo "DISTRIB_DESCRIPTION='OpenWrt '" >> /etc/openwrt_release
-sed -i 's/root:::0:99999:7:::/root:$1$/atvK01U$d72aizejNWUr9e3K2Qpc/0:19007:0:99999:7:::/g' /etc/shadow
+sed -i 's/root::0:0:99999:7:::/root:$1$\/atvK01U$d72aizejNWUr9e3K2Qpc\/0:19007:0:99999:7:::/g' /etc/shadow
 exit 0
