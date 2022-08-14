@@ -30,7 +30,8 @@ svn export --force https://github.com/kiddin9/openwrt-packages/trunk/luci-app-ne
 svn export --force https://github.com/sundaqiang/openwrt-packages-backup/branches/main/luci/applications/luci-app-rebootschedule package/sundaqiang/luci-app-rebootschedule
 git clone https://github.com/pymumu/luci-app-smartdns.git package/pymumu/luci-app-smartdns
 git clone https://github.com/sirpdboy/luci-app-netdata feeds/luci/applications/luci-app-netdata
-svn export --force https://github.com/kiddin9/openwrt-packages/trunk/netdata feeds/packages/admin/netdata
+git clone https://github.com/sirpdboy/luci-app-advanced package/sirpdboy/luci-app-advanced
+#svn export --force https://github.com/kiddin9/openwrt-packages/trunk/netdata feeds/packages/admin/netdata
 rm -rf package/xiaorouji/openwrt-passwall/v2ray-geodata   # 删除v2ray-geodata
 rm -rf feeds/packages/net/mosdns
 mv package/sundaqiang/luci-app-easyupdate/po/zh-cn package/sundaqiang/luci-app-easyupdate/po/zh_Hans
