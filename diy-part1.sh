@@ -32,7 +32,9 @@ git clone https://github.com/pymumu/luci-app-smartdns.git package/pymumu/luci-ap
 git clone https://github.com/sirpdboy/luci-app-netdata feeds/luci/applications/luci-app-netdata
 git clone https://github.com/sirpdboy/luci-app-advanced package/sirpdboy/luci-app-advanced
 #svn export --force https://github.com/kiddin9/openwrt-packages/trunk/netdata feeds/packages/admin/netdata
+git clone https://github.com/kiddin9/luci-theme-edge feeds/luci/themes/luci-theme-edge
 rm -rf package/xiaorouji/openwrt-passwall/v2ray-geodata   # 删除v2ray-geodata
 rm -rf feeds/packages/net/mosdns
 mv package/sundaqiang/luci-app-easyupdate/po/zh-cn package/sundaqiang/luci-app-easyupdate/po/zh_Hans
+mv package/kiddin9/openwrt-bypass/luci-app-bypass/po/zh-cn package/kiddin9/openwrt-bypass/luci-app-bypass/po/zh_Hans
 rm -rf feeds/packages/net/v2ray-geodata
