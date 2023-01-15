@@ -18,7 +18,7 @@
 #rm -rf feeds/luci/applications/luci-app-netdata
 #git clone https://github.com/jerrykuku/luci-theme-argon.git feeds/luci/themes/luci-theme-argon
 
-git clone https://github.com/QiuSimons/openwrt-mos package/QiuSimons/openwrt-mosdns
+#git clone https://github.com/QiuSimons/openwrt-mos package/QiuSimons/openwrt-mosdns
 #git clone https://github.com/sbwml/luci-app-mosdns package/sbwml/luci-app-mosdns
 #git clone https://github.com/xiaorouji/openwrt-passwall2 package/xiaorouji/openwrt-passwall2
 #git clone -b packages https://github.com/xiaorouji/openwrt-passwall package/xiaorouji/openwrt-passwall
