@@ -20,7 +20,6 @@
 
 #git clone https://github.com/QiuSimons/openwrt-mos package/QiuSimons/openwrt-mosdns
 #git clone https://github.com/sbwml/luci-app-mosdns package/sbwml/luci-app-mosdns
-#git clone https://github.com/xiaorouji/openwrt-passwall2 package/xiaorouji/openwrt-passwall2
 #git clone -b packages https://github.com/xiaorouji/openwrt-passwall package/xiaorouji/openwrt-passwall
 #git clone https://github.com/jerrykuku/luci-app-vssr package/jerrykuku/luci-app-vssr
 #git clone -b luci https://github.com/xiaorouji/openwrt-passwall package/xiaorouji/openwrt-passwall-luci
@@ -32,7 +31,7 @@
 #svn export --force https://github.com/kiddin9/openwrt-packages/trunk/netdata feeds/packages/admin/netdata
 #rm -rf package/xiaorouji/openwrt-passwall/v2ray-geodata   # 删除v2ray-geodata
 #rm -rf feeds/packages/net/mosdns
-
+#git clone https://github.com/yichya/luci-app-xray package/yichya/luci-app-xray
 
 
 rm -rf feeds/packages/net/v2ray-geodata
@@ -42,4 +41,7 @@ svn export --force https://github.com/sundaqiang/openwrt-packages-backup/branche
 mv package/sundaqiang/luci-app-easyupdate/po/zh-cn package/sundaqiang/luci-app-easyupdate/po/zh_Hans
 git clone https://github.com/kiddin9/luci-theme-edge feeds/luci/themes/luci-theme-edge
 svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt package/messense/aliyundrive-webdav
-git clone https://github.com/yichya/luci-app-xray package/yichya/luci-app-xray
+git clone https://github.com/xiaorouji/openwrt-passwall2 package/xiaorouji/openwrt-passwall2
+git clone https://github.com/QiuSimons/openwrt-mos package/QiuSimons/openwrt-mosdns
+rm -rf feeds/packages/net/mosdns
+rm -rf package/QiuSimons/openwrt-mosdns/v2ray-geodata
