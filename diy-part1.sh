@@ -45,3 +45,5 @@ git clone https://github.com/xiaorouji/openwrt-passwall2 package/xiaorouji/openw
 git clone https://github.com/QiuSimons/openwrt-mos package/QiuSimons/openwrt-mosdns
 rm -rf feeds/packages/net/mosdns
 rm -rf package/QiuSimons/openwrt-mosdns/v2ray-geodata
+rm -rf feeds/luci/applications/luci-app-dockerman
+git clone https://github.com/lisaac/luci-app-dockerman feeds/luci/applications/luci-app-dockerman
