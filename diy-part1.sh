@@ -33,7 +33,7 @@
 #rm -rf feeds/packages/net/mosdns
 #git clone https://github.com/yichya/luci-app-xray package/yichya/luci-app-xray
 
-
+rm -rf feeds/luci/themes/luci-theme-edge
 rm -rf feeds/packages/net/v2ray-geodata
 git clone https://github.com/sundaqiang/openwrt-packages package/sundaqiang
 git clone https://github.com/sbwml/v2ray-geodata feeds/packages/net/v2ray-geodata
@@ -45,5 +45,5 @@ git clone https://github.com/xiaorouji/openwrt-passwall2 package/xiaorouji/openw
 git clone https://github.com/QiuSimons/openwrt-mos package/QiuSimons/openwrt-mosdns
 rm -rf feeds/packages/net/mosdns
 rm -rf package/QiuSimons/openwrt-mosdns/v2ray-geodata
-rm -rf feeds/luci/applications/luci-app-dockerman
-git clone https://github.com/lisaac/luci-app-dockerman feeds/luci/applications/luci-app-dockerman
+#rm -rf feeds/luci/applications/luci-app-dockerman
+#git clone https://github.com/lisaac/luci-app-dockerman feeds/luci/applications/luci-app-dockerman
