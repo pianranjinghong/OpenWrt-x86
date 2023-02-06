@@ -36,7 +36,7 @@
 rm -rf feeds/luci/themes/luci-theme-edge
 rm -rf feeds/packages/net/v2ray-geodata
 git clone https://github.com/sundaqiang/openwrt-packages package/sundaqiang
-git clone https://github.com/sbwml/v2ray-geodata feeds/packages/net/v2ray-geodata
+#git clone https://github.com/sbwml/v2ray-geodata feeds/packages/net/v2ray-geodata
 svn export --force https://github.com/sundaqiang/openwrt-packages-backup/branches/main/luci/applications/luci-app-rebootschedule package/sundaqiang/luci-app-rebootschedule
 mv package/sundaqiang/luci-app-easyupdate/po/zh-cn package/sundaqiang/luci-app-easyupdate/po/zh_Hans
 git clone https://github.com/kiddin9/luci-theme-edge feeds/luci/themes/luci-theme-edge
@@ -44,6 +44,6 @@ svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt package/mess
 git clone https://github.com/xiaorouji/openwrt-passwall2 package/xiaorouji/openwrt-passwall2
 git clone https://github.com/QiuSimons/openwrt-mos package/QiuSimons/openwrt-mosdns
 rm -rf feeds/packages/net/mosdns
-rm -rf package/QiuSimons/openwrt-mosdns/v2ray-geodata
+#rm -rf package/QiuSimons/openwrt-mosdns/v2ray-geodata
 #rm -rf feeds/luci/applications/luci-app-dockerman
 #git clone https://github.com/lisaac/luci-app-dockerman feeds/luci/applications/luci-app-dockerman
