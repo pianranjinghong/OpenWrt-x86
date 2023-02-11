@@ -84,6 +84,8 @@ jobs:
         cp -Rf $GITHUB_WORKSPACE/files/* $GITHUB_WORKSPACE/openwrt
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P1_SH
+        ls feeds/luci/applications/luci-app-dockerman
+        cat feeds/luci/applications/luci-app-dockerman/Makefile
       
     - name: Install feeds
       run: |
