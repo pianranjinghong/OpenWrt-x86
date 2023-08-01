@@ -44,6 +44,6 @@ svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt package/mess
 git clone https://github.com/xiaorouji/openwrt-passwall2 package/xiaorouji/openwrt-passwall2
 git clone https://github.com/QiuSimons/openwrt-mos package/QiuSimons/openwrt-mosdns
 rm -rf feeds/packages/net/mosdns
+git clone -b js https://github.com/gngpp/luci-theme-design feeds/luci/themes/luci-theme-design
 #rm -rf package/QiuSimons/openwrt-mosdns/v2ray-geodata
-#rm -rf feeds/luci/applications/luci-app-dockerman
-#svn co https://github.com/lisaac/luci-app-dockerman/trunk/applications/luci-app-dockerman feeds/luci/applications/luci-app-dockerman
+
