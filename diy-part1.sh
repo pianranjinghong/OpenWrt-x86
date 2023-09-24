@@ -34,11 +34,11 @@ git clone https://github.com/sbwml/luci-app-mosdns package/sbwml/luci-app-mosdns
 git clone https://github.com/sbwml/v2ray-geodata feeds/packages/net/v2ray-geodata
 svn export --force https://github.com/sundaqiang/openwrt-packages-backup/branches/main/luci/applications/luci-app-rebootschedule package/sundaqiang/luci-app-rebootschedule
 mv package/sundaqiang/luci-app-easyupdate/po/zh-cn package/sundaqiang/luci-app-easyupdate/po/zh_Hans
-git clone https://github.com/kiddin9/luci-theme-edge feeds/luci/themes/luci-theme-edge
+git clone https://github.com/kiddin9/luci-theme-edge package/kiddin9/luci-theme-edge
 svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt package/messense/aliyundrive-webdav
 git clone https://github.com/xiaorouji/openwrt-passwall2 package/xiaorouji/openwrt-passwall2
 #git clone https://github.com/QiuSimons/openwrt-mos package/QiuSimons/openwrt-mosdns
 rm -rf feeds/packages/net/mosdns
-git clone -b js https://github.com/gngpp/luci-theme-design feeds/luci/themes/luci-theme-design
+git clone -b js https://github.com/gngpp/luci-theme-design package/gngpp/luci-theme-design
 #rm -rf package/QiuSimons/openwrt-mosdns/v2ray-geodata
 
