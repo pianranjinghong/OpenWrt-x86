@@ -29,11 +29,11 @@
 
 rm -rf feeds/luci/themes/luci-theme-edge
 rm -rf feeds/packages/net/v2ray-geodata
-git clone https://github.com/pianrnjingong/openwrt-packages package/pianrnjingong
+git clone https://github.com/pianranjinghong/openwrt-packages package/pianranjinghong
 git clone https://github.com/sbwml/luci-app-mosdns package/sbwml/luci-app-mosdns
 git clone https://github.com/sbwml/v2ray-geodata feeds/packages/net/v2ray-geodata
 svn export --force https://github.com/sundaqiang/openwrt-packages-backup/branches/main/luci/applications/luci-app-rebootschedule package/sundaqiang/luci-app-rebootschedule
-mv package/pianrnjingong/luci-app-easyupdate/po/zh-cn package/pianrnjingong/luci-app-easyupdate/po/zh_Hans
+mv package/pianranjinghong/luci-app-easyupdate/po/zh-cn package/pianranjinghong/luci-app-easyupdate/po/zh_Hans
 git clone https://github.com/kiddin9/luci-theme-edge package/kiddin9/luci-theme-edge
 svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt package/messense/aliyundrive-webdav
 git clone https://github.com/xiaorouji/openwrt-passwall2 package/xiaorouji/openwrt-passwall2
