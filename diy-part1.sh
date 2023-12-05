@@ -29,7 +29,7 @@
 
 rm -rf feeds/luci/themes/luci-theme-edge
 rm -rf feeds/packages/net/v2ray-geodata
-git clone https://github.com/pianranjinghong/openwrt-packages package/pianranjinghong
+git clone -b openwrt https://github.com/pianranjinghong/openwrt-packages package/pianranjinghong
 git clone https://github.com/sbwml/luci-app-mosdns package/sbwml/luci-app-mosdns
 git clone https://github.com/sbwml/v2ray-geodata feeds/packages/net/v2ray-geodata
 svn export --force https://github.com/sundaqiang/openwrt-packages-backup/branches/main/luci/applications/luci-app-rebootschedule package/sundaqiang/luci-app-rebootschedule
