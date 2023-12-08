@@ -32,7 +32,7 @@ rm -rf feeds/packages/net/v2ray-geodata
 git clone -b openwrt https://github.com/pianranjinghong/openwrt-packages package/pianranjinghong
 git clone https://github.com/sbwml/luci-app-mosdns package/sbwml/luci-app-mosdns
 git clone https://github.com/sbwml/v2ray-geodata feeds/packages/net/v2ray-geodata
-svn export --force https://github.com/sundaqiang/openwrt-packages-backup/branches/main/luci/applications/luci-app-rebootschedule package/sundaqiang/luci-app-rebootschedule
+#svn export --force https://github.com/sundaqiang/openwrt-packages-backup/branches/main/luci/applications/luci-app-rebootschedule package/sundaqiang/luci-app-rebootschedule
 #mv package/pianranjinghong/luci-app-easyupdate/po/zh-cn package/pianranjinghong/luci-app-easyupdate/po/zh_Hans
 git clone https://github.com/kiddin9/luci-theme-edge package/kiddin9/luci-theme-edge
 svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt package/messense/aliyundrive-webdav
