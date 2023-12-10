@@ -17,7 +17,7 @@ sed -i 's/ImmortalWrt/OpenWrt/g' include/version.mk    # 修改版本名
 #sed -i 's/geoip-only-cn-private.dat/geoip.dat/g' package/QiuSimons/openwrt-mosdns/v2ray-geodata/Makefile   # 修改geoip.dat
 sed -i '16s/1/8/' feeds/luci/applications/luci-app-dockerman/luasrc/controller/dockerman.lua
 sed -i 's/geoip-only-cn-private.dat/geoip.dat/g' feeds/packages/net/v2ray-geodata/Makefile   # 修改geoip.dat
-sed -i '6c start "$@"' feeds/packages/net/ddns-scripts/files/etc/init.d/ddns    #修改ddns启动，解决重启不能运行问题
+#sed -i '6c start "$@"' feeds/packages/net/ddns-scripts/files/etc/init.d/ddns    #修改ddns启动，解决重启不能运行问题
 
 sed -i 's/luci-theme-bootstrap/luci-theme-design/g' feeds/luci/collections/luci/Makefile   # 选择argon为默认主题
 #sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci-nginx/Makefile   # 选择argon为默认主题
