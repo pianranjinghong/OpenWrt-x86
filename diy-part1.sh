@@ -32,13 +32,14 @@ rm -rf feeds/packages/net/v2ray-geodata
 git clone -b openwrt https://github.com/pianranjinghong/openwrt-packages package/pianranjinghong
 git clone https://github.com/sbwml/luci-app-mosdns package/sbwml/luci-app-mosdns
 git clone https://github.com/sbwml/v2ray-geodata feeds/packages/net/v2ray-geodata
-#svn export --force https://github.com/sundaqiang/openwrt-packages-backup/branches/main/luci/applications/luci-app-rebootschedule package/sundaqiang/luci-app-rebootschedule
-#mv package/pianranjinghong/luci-app-easyupdate/po/zh-cn package/pianranjinghong/luci-app-easyupdate/po/zh_Hans
 git clone https://github.com/kiddin9/luci-theme-edge package/kiddin9/luci-theme-edge
 svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt package/messense/aliyundrive-webdav
 git clone https://github.com/xiaorouji/openwrt-passwall2 package/xiaorouji/openwrt-passwall2
-#git clone https://github.com/QiuSimons/openwrt-mos package/QiuSimons/openwrt-mosdns
 rm -rf feeds/packages/net/mosdns
 git clone -b js https://github.com/gngpp/luci-theme-design package/gngpp/luci-theme-design
-#rm -rf package/QiuSimons/openwrt-mosdns/v2ray-geodata
+
+
+# curl/8.5.0 - fix passwall `time_pretransfer` check
+rm -rf feeds/packages/net/curl
+git clone https://github.com/sbwml/feeds_packages_net_curl feeds/packages/net/curl
 
