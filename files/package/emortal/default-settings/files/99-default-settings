@@ -1,5 +1,6 @@
 #!/bin/sh
 
+
 uci -q get system.@imm_init[0] > "/dev/null" || uci -q add system imm_init > "/dev/null"
 
 if ! uci -q get system.@imm_init[0].lang > "/dev/null"; then
@@ -19,6 +20,7 @@ echo "log-facility=/dev/null" >> "/etc/dnsmasq.conf"
 
 rm -rf "/tmp/luci-modulecache"
 rm -f "/tmp/luci-indexcache"
+
 
 sed -i '/DISTRIB_VERSIONS/d' /etc/openwrt_release
 sed -i '/DISTRIB_GITHUB/d' /etc/openwrt_release
