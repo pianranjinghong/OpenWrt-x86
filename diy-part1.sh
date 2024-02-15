@@ -29,10 +29,10 @@ git clone -b js https://github.com/sirpdboy/luci-theme-kucat package/sirpdboy/lu
 
 rm -rf feeds/packages/net/v2ray-geodata
 #rm -rf feeds/luci/applications/luci-app-smartdns
-rm -rf feeds/packages/net/mosdns
+#rm -rf feeds/packages/net/mosdns
 
 git clone -b openwrt https://github.com/pianranjinghong/openwrt-packages package/pianranjinghong
-git clone https://github.com/sbwml/luci-app-mosdns package/sbwml/luci-app-mosdns
+git clone -b v5 https://github.com/sbwml/luci-app-mosdns package/sbwml/luci-app-mosdns
 git clone https://github.com/sbwml/v2ray-geodata feeds/packages/net/v2ray-geodata
 #svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt package/messense/aliyundrive-webdav
 git clone https://github.com/xiaorouji/openwrt-passwall2 package/xiaorouji/openwrt-passwall2
