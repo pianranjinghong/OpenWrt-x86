@@ -18,9 +18,7 @@ sed -i 's/\/bin\/ash/\/bin\/bash/' package/base-files/files/etc/passwd    # 替�
 #sed -i 's/geoip-only-cn-private.dat/geoip.dat/g' package/QiuSimons/openwrt-mosdns/v2ray-geodata/Makefile   # 修改geoip.dat
 sed -i '16s/1/8/' feeds/luci/applications/luci-app-dockerman/luasrc/controller/dockerman.lua
 sed -i 's/geoip-only-cn-private.dat/geoip.dat/g' feeds/packages/net/v2ray-geodata/Makefile   # 修改geoip.dat 
-sed -i 's/5.2.21/5.2.15/g' feeds/packages/utils/bash/Makefile
-sed -i 's/c8e31bdc59b69aaffc5b36509905ba3e5cbb12747091d27b4b977f078560d5b8/13720965b5f4fc3a0d4b61dd37e7565c741da9a5be24edc2ae00182fc1b3588c/g' feeds/packages/utils/bash/Makefile
-#sed -i 's/geoip-only-cn-private.dat/http/g' feeds/packages/utils/bash/Makefile
+
 
 
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile   # 选择argon为默认主题
