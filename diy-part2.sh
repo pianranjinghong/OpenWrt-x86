@@ -14,7 +14,7 @@
 sed -i 's/192.168.1.1/192.168.50.5/g' package/base-files/files/bin/config_generate   # 修改默认ip
 sed -i 's/ImmortalWrt/OpenWrt/g' package/base-files/files/bin/config_generate    # 修改主机名
 sed -i 's/ImmortalWrt/OpenWrt/g' include/version.mk    # 修改版本名
-#sed -i 's/\/bin\/ash/\/bin\/bash/' package/base-files/files/etc/passwd    # 替换终端为bash
+sed -i 's/\/bin\/ash/\/bin\/bash/' package/base-files/files/etc/passwd    # 替换终端为bash
 #sed -i 's/geoip-only-cn-private.dat/geoip.dat/g' package/QiuSimons/openwrt-mosdns/v2ray-geodata/Makefile   # 修改geoip.dat
 sed -i '16s/1/8/' feeds/luci/applications/luci-app-dockerman/luasrc/controller/dockerman.lua
 sed -i 's/geoip-only-cn-private.dat/geoip.dat/g' feeds/packages/net/v2ray-geodata/Makefile   # 修改geoip.dat 
