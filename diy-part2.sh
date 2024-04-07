@@ -19,9 +19,9 @@ sed -i 's/\/bin\/ash/\/bin\/bash/' package/base-files/files/etc/passwd    # 替�
 sed -i '16s/1/8/' feeds/luci/applications/luci-app-dockerman/luasrc/controller/dockerman.lua
 sed -i 's/geoip-only-cn-private.dat/geoip.dat/g' feeds/packages/net/v2ray-geodata/Makefile   # 修改geoip.dat 
 
-sed -i '109,111d' package/libs/gettext-full/Makefile
-sed -i '103 a \\t--with-libiconv-prefix=$(STAGING_DIR_HOSTPKG) \\' package/libs/gettext-full/Makefile
-sed -i 's/gperf\/host/gperf\/host libiconv-full\/host/' package/libs/gettext-full/Makefile
+#sed -i '109,111d' package/libs/gettext-full/Makefile
+#sed -i '103 a \\t--with-libiconv-prefix=$(STAGING_DIR_HOSTPKG) \\' package/libs/gettext-full/Makefile
+#sed -i 's/gperf\/host/gperf\/host libiconv-full\/host/' package/libs/gettext-full/Makefile
 
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci-light/Makefile   # 选择argon为默认主题
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci-nginx/Makefile   # 选择argon为默认主题
