@@ -32,7 +32,7 @@ rm -rf feeds/luci/applications/luci-app-passwall
 #rm -rf feeds/luci/applications/luci-app-smartdns
 #rm -rf feeds/packages/net/mosdns
 
-svn co https://github.com/pesa1234/packages/branches/fix-tini-musl125/utils/tini/patches/002-fix_missing_basename.patch feeds/packages/utils/tini/patches/002-fix_missing_basename.patch
+wget https://github.com/pesa1234/packages/branches/fix-tini-musl125/utils/tini/patches/002-fix_missing_basename.patch -P feeds/packages/utils/tini/patches/
 git clone -b openwrt https://github.com/pianranjinghong/openwrt-packages package/pianranjinghong
 git clone -b v5 https://github.com/sbwml/luci-app-mosdns package/sbwml/luci-app-mosdns
 git clone https://github.com/sbwml/v2ray-geodata feeds/packages/net/v2ray-geodata
