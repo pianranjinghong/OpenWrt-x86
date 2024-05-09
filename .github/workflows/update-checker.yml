@@ -22,8 +22,6 @@ on:
 
 jobs:
   check:
-    runs-on: ubujobs:
-  check:
     runs-on: ubuntu-latest
 
     steps:
