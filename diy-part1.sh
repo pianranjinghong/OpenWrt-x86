@@ -28,7 +28,12 @@ git clone https://github.com/jerrykuku/luci-theme-argon feeds/luci/themes/luci-t
 #git clone -b js https://github.com/sirpdboy/luci-theme-kucat package/sirpdboy/luci-theme-kucat
 
 rm -rf feeds/packages/net/v2ray-geodata
-rm -rf feeds/luci/applications/luci-app-passwall
+mv feeds/luci/applications/luci-app-passwall feeds/luci/applications/luci-app-passwall1
+git clone https://github.com/xiaorouji/openwrt-passwall feeds/luci/applications/luci-app-passwall
+#sed -i "9s/.*/$(sed -n '9p' feeds/luci/applications/luci-app-passwall)/" feeds/luci/applications/luci-app-passwall1
+sed -i "9s#.*#$(sed -n '9p' feeds/luci/applications/luci-app-passwall/Makefile | sed 's/[&/#]/\\&/g')#" feeds/luci/applications/luci-app-passwall1/Makefile
+cp feeds/luci/applications/luci-app-passwall1/Makefile feeds/luci/applications/luci-app-passwall/Makefile
+rm -rf feeds/luci/applications/luci-app-passwall1
 #rm -rf feeds/luci/applications/luci-app-smartdns
 #rm -rf feeds/packages/net/mosdns
 
@@ -40,7 +45,5 @@ git clone https://github.com/sbwml/v2ray-geodata feeds/packages/net/v2ray-geodat
 git clone https://github.com/xiaorouji/openwrt-passwall2 package/xiaorouji/openwrt-passwall2
 #git clone https://github.com/pymumu/luci-app-smartdns feeds/luci/applications/luci-app-smartdns
 #git clone https://github.com/sirpdboy/luci-app-advancedplus package/sirpdboy/luci-app-advancedplus
-git clone https://github.com/xiaorouji/openwrt-passwall feeds/luci/applications/luci-app-passwall
-
 
 
