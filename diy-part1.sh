@@ -33,7 +33,7 @@ git clone https://github.com/xiaorouji/openwrt-passwall feeds/luci/applications/
 #mv feeds/luci/applications/luci-app-passwall/luci-app-passwall/* feeds/luci/applications/luci-app-passwall
 #sed -i "9s/.*/$(sed -n '9p' feeds/luci/applications/luci-app-passwall)/" feeds/luci/applications/luci-app-passwall1
 sed -i "9s#.*#$(sed -n '9p' feeds/luci/applications/luci-app-passwall/luci-app-passwall/Makefile | sed 's/[&/#]/\\&/g')#" feeds/luci/applications/luci-app-passwall1/Makefile
-cp feeds/luci/applications/luci-app-passwall1/Makefile feeds/luci/applications/luci-app-passwall/Makefile
+cp feeds/luci/applications/luci-app-passwall1/Makefile feeds/luci/applications/luci-app-passwall/luci-app-passwall/Makefile
 rm -rf feeds/luci/applications/luci-app-passwall1
 #rm -rf feeds/luci/applications/luci-app-smartdns
 #rm -rf feeds/packages/net/mosdns
