@@ -13,6 +13,11 @@ name: Build OpenWrt
 on:
   repository_dispatch:
   workflow_dispatch:
+    inputs:
+      cache:
+        description: 'Cache wrt build'
+        required: false
+        default: 'tru
 
 env:
   REPO_URL: https://github.com/immortalwrt/immortalwrt
@@ -84,8 +89,6 @@ jobs:
         cp -Rf $GITHUB_WORKSPACE/files/* $GITHUB_WORKSPACE/openwrt
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P1_SH
-        ls feeds/luci/applications/luci-app-dockerman
-        cat feeds/luci/applications/luci-app-dockerman/Makefile
       
     - name: Install feeds
       run: |
@@ -113,8 +116,6 @@ jobs:
         chmod +x $DIY_P2_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
-        cat package/emortal/default-settings/files/99-default-settings
-        cat feeds/luci/collections/luci/Makefile
       
 
     - name: Download package
