@@ -17,8 +17,8 @@ on:
       cache:
         description: 'Cache wrt build'
         required: false
-        default: 'tru
-
+        default: 'true'
+        
 env:
   REPO_URL: https://github.com/immortalwrt/immortalwrt
   REPO_BRANCH: master
