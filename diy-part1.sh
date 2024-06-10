@@ -31,10 +31,10 @@ rm -rf feeds/packages/net/v2ray-geodata
 #mv feeds/luci/applications/luci-app-passwall feeds/luci/applications/luci-app-passwall1
 rm -rf feeds/luci/applications/luci-app-passwall
 git clone https://github.com/xiaorouji/openwrt-passwall feeds/luci/applications/luci-app-passwall
-sed -i '/mangle_output meta mark 1/a\
-\t\tnft "add rule inet fw4 PSW_MANGLE ip protocol udp udp dport 53 counter return"\
-\t\tnft "add rule inet fw4 PSW_MANGLE_V6 meta l4proto udp udp dport 53 counter return"
-' feeds/luci/applications/luci-app-passwall/luci-app-passwall/root/usr/share/passwall/nftables.sh
+#sed -i '/mangle_output meta mark 1/a\
+#\t\tnft "add rule inet fw4 PSW_MANGLE ip protocol udp udp dport 53 counter return"\
+#\t\tnft "add rule inet fw4 PSW_MANGLE_V6 meta l4proto udp udp dport 53 counter return"
+#' feeds/luci/applications/luci-app-passwall/luci-app-passwall/root/usr/share/passwall/nftables.sh
 #mv feeds/luci/applications/luci-app-passwall/luci-app-passwall/* feeds/luci/applications/luci-app-passwall
 #sed -i "9s/.*/$(sed -n '9p' feeds/luci/applications/luci-app-passwall)/" feeds/luci/applications/luci-app-passwall1
 #sed -i "9s#.*#$(sed -n '9p' feeds/luci/applications/luci-app-passwall/luci-app-passwall/Makefile | sed 's/[&/#]/\\&/g')#" feeds/luci/applications/luci-app-passwall1/Makefile
