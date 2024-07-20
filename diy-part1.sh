@@ -30,23 +30,14 @@ git clone https://github.com/jerrykuku/luci-theme-argon feeds/luci/themes/luci-t
 rm -rf feeds/packages/net/v2ray-geodata
 #mv feeds/luci/applications/luci-app-passwall feeds/luci/applications/luci-app-passwall1
 rm -rf feeds/luci/applications/luci-app-passwall
-git clone https://github.com/xiaorouji/openwrt-passwall feeds/luci/applications/luci-app-passwall
-#sed -i '/mangle_output meta mark 1/a\
-#\t\tnft "add rule inet fw4 PSW_MANGLE ip protocol udp udp dport 53 counter return"\
-#\t\tnft "add rule inet fw4 PSW_MANGLE_V6 meta l4proto udp udp dport 53 counter return"
-#' feeds/luci/applications/luci-app-passwall/luci-app-passwall/root/usr/share/passwall/nftables.sh
-#mv feeds/luci/applications/luci-app-passwall/luci-app-passwall/* feeds/luci/applications/luci-app-passwall
-#sed -i "9s/.*/$(sed -n '9p' feeds/luci/applications/luci-app-passwall)/" feeds/luci/applications/luci-app-passwall1
-#sed -i "9s#.*#$(sed -n '9p' feeds/luci/applications/luci-app-passwall/luci-app-passwall/Makefile | sed 's/[&/#]/\\&/g')#" feeds/luci/applications/luci-app-passwall1/Makefile
-#cp feeds/luci/applications/luci-app-passwall1/Makefile feeds/luci/applications/luci-app-passwall/luci-app-passwall/Makefile
+#git clone https://github.com/xiaorouji/openwrt-passwall feeds/luci/applications/luci-app-passwall
+git clone -b luci-smartdns-dev https://github.com/lwb1978/openwrt-passwall feeds/luci/applications/luci-app-passwall
 #rm -rf feeds/luci/applications/luci-app-smartdns
 #rm -rf feeds/packages/net/mosdns
 
-#wget https://raw.githubusercontent.com/pesa1234/packages/fix-tini-musl125/utils/tini/patches/002-fix_missing_basename.patch -P feeds/packages/utils/tini/patches/
 git clone -b openwrt https://github.com/pianranjinghong/openwrt-packages package/pianranjinghong
 git clone -b v5 https://github.com/sbwml/luci-app-mosdns package/sbwml/luci-app-mosdns
 git clone https://github.com/sbwml/v2ray-geodata feeds/packages/net/v2ray-geodata
-#svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt package/messense/aliyundrive-webdav
 git clone https://github.com/xiaorouji/openwrt-passwall2 package/xiaorouji/openwrt-passwall2
 #git clone https://github.com/pymumu/luci-app-smartdns feeds/luci/applications/luci-app-smartdns
 #git clone https://github.com/sirpdboy/luci-app-advancedplus package/sirpdboy/luci-app-advancedplus
