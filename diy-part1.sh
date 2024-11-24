@@ -30,8 +30,8 @@ git clone https://github.com/jerrykuku/luci-theme-argon feeds/luci/themes/luci-t
 rm -rf feeds/packages/net/v2ray-geodata
 #mv feeds/luci/applications/luci-app-passwall feeds/luci/applications/luci-app-passwall1
 rm -rf feeds/luci/applications/luci-app-passwall
-#git clone https://github.com/xiaorouji/openwrt-passwall feeds/luci/applications/luci-app-passwall
-git clone -b luci-smartdns-dev https://github.com/lwb1978/openwrt-passwall feeds/luci/applications/luci-app-passwall
+git clone https://github.com/xiaorouji/openwrt-passwall feeds/luci/applications/luci-app-passwall
+#git clone -b luci-smartdns-dev https://github.com/lwb1978/openwrt-passwall feeds/luci/applications/luci-app-passwall
 #rm -rf feeds/luci/applications/luci-app-smartdns
 #rm -rf feeds/packages/net/mosdns
 
