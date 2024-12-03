@@ -27,7 +27,7 @@ git clone -b js https://github.com/gngpp/luci-theme-design package/gngpp/luci-th
 git clone https://github.com/jerrykuku/luci-theme-argon feeds/luci/themes/luci-theme-argon
 #git clone -b js https://github.com/sirpdboy/luci-theme-kucat package/sirpdboy/luci-theme-kucat
 
-rm -rf feeds/packages/net/v2ray-geodata
+#rm -rf feeds/packages/net/v2ray-geodata
 #mv feeds/luci/applications/luci-app-passwall feeds/luci/applications/luci-app-passwall1
 rm -rf feeds/luci/applications/luci-app-passwall
 git clone https://github.com/xiaorouji/openwrt-passwall feeds/luci/applications/luci-app-passwall
@@ -37,7 +37,7 @@ git clone https://github.com/xiaorouji/openwrt-passwall feeds/luci/applications/
 
 git clone -b openwrt https://github.com/pianranjinghong/openwrt-packages package/pianranjinghong
 git clone -b v5 https://github.com/sbwml/luci-app-mosdns package/sbwml/luci-app-mosdns
-git clone https://github.com/sbwml/v2ray-geodata feeds/packages/net/v2ray-geodata
+#git clone https://github.com/sbwml/v2ray-geodata feeds/packages/net/v2ray-geodata
 git clone https://github.com/xiaorouji/openwrt-passwall2 package/xiaorouji/openwrt-passwall2
 #git clone https://github.com/pymumu/luci-app-smartdns feeds/luci/applications/luci-app-smartdns
 #git clone https://github.com/sirpdboy/luci-app-advancedplus package/sirpdboy/luci-app-advancedplus
