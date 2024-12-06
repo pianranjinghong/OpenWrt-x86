@@ -23,7 +23,6 @@
 rm -rf feeds/luci/themes/luci-theme-argon
 
 git clone https://github.com/kiddin9/luci-theme-edge package/kiddin9/luci-theme-edge
-git clone -b js https://github.com/gngpp/luci-theme-design package/gngpp/luci-theme-design
 git clone https://github.com/jerrykuku/luci-theme-argon feeds/luci/themes/luci-theme-argon
 #git clone -b js https://github.com/sirpdboy/luci-theme-kucat package/sirpdboy/luci-theme-kucat
 
