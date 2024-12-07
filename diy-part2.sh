@@ -23,6 +23,7 @@ sed -i 's/geoip-only-cn-private.dat/geoip.dat/g' feeds/packages/net/v2ray-geodat
 #sed -i '103 a \\t--with-libiconv-prefix=$(STAGING_DIR_HOSTPKG) \\' package/libs/gettext-full/Makefile
 #sed -i 's/gperf\/host/gperf\/host libiconv-full\/host/' package/libs/gettext-full/Makefile
 
+sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile   # 选择argon为默认主题
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci-light/Makefile   # 选择argon为默认主题
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci-nginx/Makefile   # 选择argon为默认主题
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci-ssl-nginx/Makefile   # 选择argon为默认主题
