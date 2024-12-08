@@ -32,19 +32,14 @@ git clone https://github.com/jerrykuku/luci-theme-argon feeds/luci/themes/luci-t
 # 核心库
 #git clone https://github.com/xiaorouji/openwrt-passwall-packages package/passwall-packages
 
-
-rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box,mosdns}
-git clone -b v5 https://github.com/sbwml/openwrt_helloworld package/helloworld
-
-
-
 rm -rf feeds/luci/applications/luci-app-passwall
+rm -rf feeds/packages/net/{v2ray-geodata,mosdns}
 
-#git clone https://github.com/xiaorouji/openwrt-passwall feeds/luci/applications/luci-app-passwall
+git clone https://github.com/pianranjinghong/v2ray-geodata feeds/packages/net/v2ray-geodata
+git clone https://github.com/xiaorouji/openwrt-passwall feeds/luci/applications/luci-app-passwall
 git clone -b openwrt https://github.com/pianranjinghong/openwrt-packages package/pianranjinghong
 git clone -b v5 https://github.com/sbwml/luci-app-mosdns package/sbwml/luci-app-mosdns
-git clone https://github.com/sbwml/v2ray-geodata feeds/packages/net/v2ray-geodata
-#git clone https://github.com/xiaorouji/openwrt-passwall2 package/xiaorouji/openwrt-passwall2
+
 #git clone https://github.com/pymumu/luci-app-smartdns feeds/luci/applications/luci-app-smartdns
 #git clone https://github.com/sirpdboy/luci-app-advancedplus package/sirpdboy/luci-app-advancedplus
 
