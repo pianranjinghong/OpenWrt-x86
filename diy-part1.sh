@@ -31,13 +31,16 @@ git clone https://github.com/jerrykuku/luci-theme-argon feeds/luci/themes/luci-t
 #rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box,pdnsd-alt,brook,chinadns-ng,dns2socks,dns2tcp,gn,hysteria,ipt2socks,microsocks,naiveproxy,shadowsocks-rust,shadowsocksr-libev,simple-obfs,tcping,trojan,trojan-go,trojan-plus,tuic-client,v2ray-plugin,xray-plugin,gn}
 # 核心库
 #git clone https://github.com/xiaorouji/openwrt-passwall-packages package/passwall-packages
-#rm -rf package/passwall-packages/{chinadns-ng,naiveproxy,shadowsocks-rust,v2ray-geodata}
-#merge_package v5 https://github.com/sbwml/openwrt_helloworld package/passwall-packages chinadns-ng naiveproxy shadowsocks-rust v2ray-geodata
 
-rm -rf feeds/packages/net/{v2ray-geodata,mosdns}
+
+rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box,mosdns}
+git clone -b v5 https://github.com/sbwml/openwrt_helloworld package/helloworld
+
+
+
 rm -rf feeds/luci/applications/luci-app-passwall
 
-git clone https://github.com/xiaorouji/openwrt-passwall feeds/luci/applications/luci-app-passwall
+#git clone https://github.com/xiaorouji/openwrt-passwall feeds/luci/applications/luci-app-passwall
 git clone -b openwrt https://github.com/pianranjinghong/openwrt-packages package/pianranjinghong
 git clone -b v5 https://github.com/sbwml/luci-app-mosdns package/sbwml/luci-app-mosdns
 git clone https://github.com/sbwml/v2ray-geodata feeds/packages/net/v2ray-geodata
