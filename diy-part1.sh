@@ -37,6 +37,7 @@ rm -rf feeds/packages/net/{v2ray-geodata,mosdns}
 
 git clone https://github.com/pianranjinghong/v2ray-geodata feeds/packages/net/v2ray-geodata
 git clone https://github.com/xiaorouji/openwrt-passwall feeds/luci/applications/luci-app-passwall
+git clone https://github.com/xiaorouji/openwrt-passwall2 package/xiaorouji/luci-app-passwall2
 git clone -b openwrt https://github.com/pianranjinghong/openwrt-packages package/pianranjinghong
 git clone -b v5 https://github.com/sbwml/luci-app-mosdns package/sbwml/luci-app-mosdns
 
