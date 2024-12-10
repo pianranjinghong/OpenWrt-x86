@@ -41,6 +41,7 @@ git clone https://github.com/xiaorouji/openwrt-passwall2 package/xiaorouji/luci-
 git clone -b openwrt https://github.com/pianranjinghong/openwrt-packages package/pianranjinghong
 git clone -b v5 https://github.com/sbwml/luci-app-mosdns package/sbwml/luci-app-mosdns
 
+rm -rf package/xiaorouji/luci-app-passwall2/luci-app-passwall2/htdocs
 #git clone https://github.com/pymumu/luci-app-smartdns feeds/luci/applications/luci-app-smartdns
 #git clone https://github.com/sirpdboy/luci-app-advancedplus package/sirpdboy/luci-app-advancedplus
 
