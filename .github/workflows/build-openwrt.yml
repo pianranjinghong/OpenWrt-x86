@@ -77,13 +77,13 @@ jobs:
     - name: Install feeds
       run: |
         cd openwrt
-        ./scripts/feeds install package -a
+        ./scripts/feeds install -a
 
     - name: Download package
       id: package
       run: |
         cd openwrt
-        make package/feeds/packages/smartdns/compile
+        make package/feeds/packages/net/smartdns/compile
         
     - name: Archive IPK files
       run: |
