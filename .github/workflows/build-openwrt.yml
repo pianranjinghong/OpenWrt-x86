@@ -74,6 +74,7 @@ jobs:
 
     - name: Configure packages
       run: |
+          cd openwrt
           # 创建最小化编译配置
           cat >> .config <<EOF
           echo "CONFIG_PACKAGE_smartdns-ui=y" >> .config
