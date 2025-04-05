@@ -1,4 +1,3 @@
-
 name: Build OpenWrt
 
 on:
@@ -49,7 +48,7 @@ jobs:
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
         
-    - name: cache
+    - name: Cache
       if: github.event.inputs.cache == 'true' && github.event.inputs.cache != 'false'
       uses: klever1988/cachewrtbuild@main
       with:
@@ -66,7 +65,7 @@ jobs:
       run: |
         cd openwrt
         ./scripts/feeds update -a
-      
+
     - name: Install feeds
       run: |
         cd openwrt
@@ -75,10 +74,12 @@ jobs:
     - name: Configure packages
       run: |
         cd openwrt
-          # 创建最小化编译配置
-        cat >> .config <<EOF
-        echo "CONFIG_PACKAGE_smartdns-ui=y" >> .config
-        echo "CONFIG_PACKAGE_smartdns-webui=y" >> .config
+        cat > .config <<EOF
+        CONFIG_TARGET_x86=y
+        CONFIG_TARGET_x86_64=y
+        CONFIG_TARGET_x86_64_Generic=y
+        CONFIG_PACKAGE_smartdns-ui=y
+        CONFIG_PACKAGE_smartdns-webui=y
         EOF
         make defconfig
           
@@ -100,7 +101,6 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
-
     - name: Delete workflow runs
       uses: GitRML/delete-workflow-runs@main
       with:
