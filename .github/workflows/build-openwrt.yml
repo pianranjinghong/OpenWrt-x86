@@ -69,11 +69,11 @@ jobs:
         ccache: 'true'
         prefix: ${{ github.workspace }}/openwrt
         
-    - name: Load custom feeds
+    - name: Replace smartdns from external repo
       run: |
-        [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
-        cd openwrt
-        git clone https://github.com/pymumu/openwrt-smartdns /feeds/packages/net/smartdns/
+        cd openwrt/package
+        rm -rf feeds/packages/net/smartdns
+        git clone https://github.com/pymumu/openwrt-smartdns feeds/packages/net/smartdns
         
     - name: Update feeds
       run: |
