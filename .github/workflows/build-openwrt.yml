@@ -1,5 +1,4 @@
 
-
 name: Build OpenWrt
 
 on:
@@ -62,12 +61,18 @@ jobs:
         cd openwrt/package
         rm -rf feeds/packages/net/smartdns
         git clone https://github.com/pymumu/openwrt-smartdns feeds/packages/net/smartdns
-        
    
+    - name: Configure packages
+        run: |
+          # 创建最小化编译配置
+          touch .config
+          echo "CONFIG_PACKAGE_smartdns-ui=y" >> .config
+          echo "CONFIG_PACKAGE_smartdns-webui=y" >> .config
+        
     - name: Update feeds
       run: |
         cd openwrt
-        ./feeds/packages/net/smartdns/
+        ./scripts/feeds update -a
       
     - name: Install feeds
       run: |
@@ -79,66 +84,19 @@ jobs:
       run: |
         cd openwrt
         make package/feeds/packages/smartdns/compile
-          
-    - name: Check space usage
-      if: (!cancelled())
-      run: df -hT
         
-    - name: Get environment path
-      id: environment
-      if: env.UPLOAD_BIN_DIR == 'true' && !cancelled()
+    - name: Archive IPK files
       run: |
-        cd openwrt/bin/
-        echo "WORKSPACE_DIR=$PWD" >> $GITHUB_ENV
-        cd  targets/*/*
-        echo "UPLOAD_PATH=$PWD" >> $GITHUB_ENV
-        echo "::set-output name=status::success"  
-        
-    - name: Compressed firmware packages
-      uses: thedoctor0/zip-release@master
-      if: steps.environment.outputs.status == 'success' && steps.compile.outputs.status == 'success' && !cancelled()
-      with:
-        type: tar
-        path: packages/
-        directory: ${{ env.WORKSPACE_DIR }}/
-        filename: ${{ env.UPLOAD_PATH }}/OpenWrt_firmware_packages${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}.tar.gz
-        
-    - name: Organize files
-      id: organize
-      if: env.UPLOAD_FIRMWARE == 'true' && steps.compile.outputs.status == 'success' && !cancelled()
-      run: |
-        cd openwrt/bin/targets/*/*
-        rm -rf packages
-        echo "FIRMWARE=$PWD" >> $GITHUB_ENV
-        echo "::set-output name=status::success"
-        
-    - name: Upload firmware directory
-      uses: actions/upload-artifact@main
-      if: steps.organize.outputs.status == 'success' && !cancelled()
-      with:
-        name: OpenWrt_firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
-        path: ${{ env.FIRMWARE }}
+        mkdir -p output
+        find openwrt/bin/packages/ -name "*smartdns*.ipk" -exec cp {} output/ \;
 
-    
-    
-    - name: Generate release tag
-      id: tag
-      if: env.UPLOAD_RELEASE == 'true' && steps.compile.outputs.status == 'success' && !cancelled()
-      run: |
-        touch release.txt
-        [ $UPLOAD_COWTRANSFER = true ] && echo "🔗 [Cowtransfer](${{ steps.cowtransfer.outputs.url }})" >> release.txt
-        [ $UPLOAD_WETRANSFER = true ] && echo "🔗 [WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
-        echo "::set-output name=status::success"
-        
-    - name: Upload firmware to release
+    - name: Upload IPKs to GitHub Release
       uses: softprops/action-gh-release@v1
-      if: steps.tag.outputs.status == 'success' && !cancelled()
+      with:
+        files: output/*.ipk
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ env.RELEASE_TAG }}
-        body_path: release.txt
-        files: ${{ env.FIRMWARE }}/*
+        
 
     - name: Delete workflow runs
       uses: GitRML/delete-workflow-runs@main
