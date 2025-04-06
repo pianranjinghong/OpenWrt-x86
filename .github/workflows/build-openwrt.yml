@@ -112,8 +112,8 @@ jobs:
         env:
           MAKEFLAGS: "-j$(nproc)"
         run: |
-          make package/smartdns-ui/compile V=s
-          make package/smartdns-ui/clean
+          make package/smartdns/compile V=s
+          make package/smartdns/clean
 
       - name: Prepare Release Artifacts
         run: |
