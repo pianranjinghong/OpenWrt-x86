@@ -92,18 +92,6 @@ jobs:
           # 复制整个 smartdns 包到 SDK 的 package 目录
           cp -r ./package/smartdns/. immortalwrt-sdk/package/smartdns/
 
-      - name: Configure OpenWrt Official Feeds
-        working-directory: immortalwrt-sdk
-        run: |
-          # 备份原始 feeds.conf.default（可选）
-          cp feeds.conf.default feeds.conf.default.bak
-
-          # 添加 OpenWrt 官方 feeds 源
-          echo "src-git packages https://git.openwrt.org/openwrt/packages.git" >> feeds.conf.default
-          echo "src-git luci https://git.openwrt.org/project/luci.git" >> feeds.conf.default
-          echo "src-git telephony https://git.openwrt.org/openwrt/telephony.git" >> feeds.conf.default
-          echo "src-git routing https://git.openwrt.org/openwrt/routing.git" >> feeds.conf.default
-
       - name: Update and Install Feeds
         working-directory: immortalwrt-sdk
         run: |
