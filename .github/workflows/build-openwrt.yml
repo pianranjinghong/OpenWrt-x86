@@ -68,17 +68,8 @@ jobs:
       - name: Install build dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends \
-            build-essential \
-            libncurses5-dev \
-            gawk \
-            flex \
-            bison \
-            gettext \
-            wget \
-            zstd \
-            git \
-            npm
+          sudo apt-get install -y npm
+          sudo bash -c 'bash <(curl -s https://build-scripts.immortalwrt.org/init_build_environment.sh)' 
  
       - name: Download ImmortalWrt SDK
         run: |
@@ -121,6 +112,9 @@ jobs:
 
       - name: Prepare Release Artifacts
         run: |
+          ls immortalwrt-sdk/bin/packages/
+          ls immortalwrt-sdk/bin/packages/x86_64/
+          ls immortalwrt-sdk/build_dir/target-x86_64_musl/linux-x86_64/packages/ipkg-x86_64/
           mkdir -p release
           find immortalwrt-sdk/bin/packages/ -name "*.ipk" -exec cp {} release/ \;
           if [ ! -f release/*.ipk ]; then
