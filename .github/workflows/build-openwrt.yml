@@ -25,9 +25,9 @@ jobs:
           submodules: 'recursive'  # 确保子模块被拉取（如果需要）
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '16'
+          node-version: '20'
 
       - name: Setup Rust toolchain
         uses: actions-rs/toolchain@v1
