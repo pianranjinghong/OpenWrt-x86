@@ -116,8 +116,8 @@ jobs:
         env:
           MAKEFLAGS: "-j$(nproc)"
         run: |
-          make ./feeds/packages/net/smartdns/compile V=s
-          make ./feeds/packages/net/smartdns/clean
+          make package/feeds/packages/net/smartdns/compile V=s
+          make package/feeds/packages/net/smartdns/clean
 
       - name: Prepare Release Artifacts
         run: |
