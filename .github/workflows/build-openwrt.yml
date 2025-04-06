@@ -1,11 +1,14 @@
 name: Build smartdns-ui and smartdns-webui IPK
 
 on:
+  push:
+    tags:
+      - 'v*'  # 通过标签触发构建
   repository_dispatch:
   workflow_dispatch:
     inputs:
       cache:
-        description: 'Cache wrt build'
+        description: 'Cache build dependencies'
         required: false
         default: 'true'
 
@@ -18,15 +21,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Cache SDK and Dependencies
-        uses: actions/cache@v3
         with:
-          path: |
-            ./immortalwrt-sdk
-            ./node_modules
-            ./target
-          key: ${{ runner.os }}-sdk-${{ hashFiles('**/Cargo.lock') }}
+          submodules: 'recursive'  # 确保子模块被拉取（如果需要）
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
@@ -39,10 +35,38 @@ jobs:
           toolchain: stable
           override: true
 
+      - name: Cache SDK and Dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ./immortalwrt-sdk
+            ./node_modules
+            ./target
+          key: ${{ runner.os }}-sdk-${{ hashFiles('**/Cargo.lock') }}-${{ hashFiles('package/smartdns/Makefile') }}
+          restore-keys: |
+            ${{ runner.os }}-sdk-
+        if: steps.cache-inputs.outputs.cache == 'true'
+
+      - name: Verify package directory exists
+        run: |
+          if [ ! -d "./package/smartdns" ]; then
+            echo "Error: ./package/smartdns directory does not exist!"
+            exit 1
+          fi
+
       - name: Install build dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y build-essential libncurses5-dev gawk flex bison gettext wget zstd
+          sudo apt-get install -y --no-install-recommends \
+            build-essential \
+            libncurses5-dev \
+            gawk \
+            flex \
+            bison \
+            gettext \
+            wget \
+            zstd \
+            git
 
       - name: Download ImmortalWrt SDK
         run: |
@@ -54,19 +78,44 @@ jobs:
       - name: Copy smartdns package into SDK
         run: |
           mkdir -p immortalwrt-sdk/package/smartdns
-          cp -r ./package/smartdns/* immortalwrt-sdk/package/smartdns/
+          cp -r ./package/smartdns/. immortalwrt-sdk/package/smartdns/
 
-      - name: Setup SDK config
+      - name: Configure OpenWrt Official Feeds
+        working-directory: immortalwrt-sdk
+        run: |
+          # 备份原始 feeds.conf.default（可选）
+          cp feeds.conf.default feeds.conf.default.bak
+
+          # 添加 OpenWrt 官方 feeds 源
+          echo "src-git packages https://git.openwrt.org/openwrt/packages.git" >> feeds.conf.default
+          echo "src-git luci https://git.openwrt.org/project/luci.git" >> feeds.conf.default
+          echo "src-git telephony https://git.openwrt.org/openwrt/telephony.git" >> feeds.conf.default
+          echo "src-git routing https://git.openwrt.org/openwrt/routing.git" >> feeds.conf.default
+
+      - name: Update and Install Feeds
+        working-directory: immortalwrt-sdk
+        run: |
+          ./scripts/feeds update -a
+          ./scripts/feeds install -a
+
+      - name: Setup SDK Configuration
         working-directory: immortalwrt-sdk
         run: |
           make defconfig
+          # 自定义配置（根据需要启用依赖项）
+          # echo 'CONFIG_PACKAGE_smartdns=y' >> .config
+          echo 'CONFIG_PACKAGE_smartdns-ui=y' >> .config
+          echo 'CONFIG_PACKAGE_smartdns-webui=y' >> .config
 
-      - name: Build smartdns-ui package
+      - name: Build smartdns-ui Package
         working-directory: immortalwrt-sdk
+        env:
+          MAKEFLAGS: "-j$(nproc)"
         run: |
-          make package/smartdns-ui/compile V=s -j$(nproc)
+          make package/smartdns-ui/compile V=s
+          make package/smartdns-ui/clean  # 清理临时文件
 
-      - name: Prepare release artifacts
+      - name: Prepare Release Artifacts
         run: |
           mkdir -p release
           find immortalwrt-sdk/bin/packages/ -name "*.ipk" -exec cp {} release/ \;
@@ -97,3 +146,7 @@ jobs:
           asset_path: release/*.ipk
           asset_name: smartdns-ui-ipk
           asset_content_type: application/octet-stream
+
+      - name: Cleanup
+        run: |
+          rm -rf immortalwrt-sdk.tar.zst immortalwrt-sdk
