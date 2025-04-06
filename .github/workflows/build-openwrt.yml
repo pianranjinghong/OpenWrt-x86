@@ -1,4 +1,4 @@
-name: Build OpenWrt
+name: Build smartdns-ui and smartdns-webui IPK
 
 on:
   repository_dispatch:
@@ -9,107 +9,91 @@ on:
         required: false
         default: 'true'
 
-env:
-  REPO_URL: https://github.com/immortalwrt/immortalwrt
-  REPO_BRANCH: master
-  FEEDS_CONF: feeds.conf.default
-  UPLOAD_RELEASE: true
-  TZ: Asia/Shanghai
-
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
+    env:
+      SDK_URL: https://downloads.immortalwrt.org/snapshots/targets/x86/64/immortalwrt-sdk-x86-64_gcc-13.3.0_musl.Linux-x86_64.tar.zst
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Initialization environment
-      env:
-        DEBIAN_FRONTEND: noninteractive
-      run: |
-        sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
-        sudo -E apt-get -qq update
-        sudo -E apt-get -qq install -y ack antlr3 asciidoc autoconf automake autopoint binutils bison build-essential bzip2 ccache clang cmake cpio curl device-tree-compiler ecj fastjar flex gawk gettext gcc-multilib g++-multilib git gnutls-dev gperf haveged help2man intltool lib32gcc-s1 libc6-dev-i386 libelf-dev libglib2.0-dev libgmp3-dev libltdl-dev libmpc-dev libmpfr-dev libncurses-dev libpython3-dev libreadline-dev libssl-dev libtool libyaml-dev libz-dev lld llvm lrzsz mkisofs msmtp nano ninja-build p7zip p7zip-full patch pkgconf python3 python3-pip python3-ply python3-docutils python3-pyelftools qemu-utils re2c rsync scons squashfs-tools subversion swig texinfo uglifyjs upx-ucl unzip vim wget xmlto xxd zlib1g-dev zstd nodejs npm lua5.3 liblua5.3-dev
-        sudo -E apt-get -qq autoremove --purge
-        sudo -E apt-get -qq clean
-        sudo timedatectl set-timezone "$TZ"
-        sudo mkdir -p /workdir
-        sudo chown $USER:$GROUPS /workdir
-        
-    - name: Clone source code
-      working-directory: /workdir
-      run: |
-        df -hT $PWD
-        git clone $REPO_URL -b $REPO_BRANCH openwrt
-        ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
-        
-    - name: Cache
-      if: github.event.inputs.cache == 'true' && github.event.inputs.cache != 'false'
-      uses: klever1988/cachewrtbuild@main
-      with:
-        ccache: 'true'
-        prefix: ${{ github.workspace }}/openwrt
-        
-    - name: Replace smartdns from external repo
-      run: |
-        cd openwrt/package
-        rm -rf feeds/packages/net/smartdns
-        git clone https://github.com/pymumu/openwrt-smartdns feeds/packages/net/smartdns
-        
-    - name: Update feeds
-      run: |
-        cd openwrt
-        ./scripts/feeds update -a
+      - name: Cache SDK and Dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ./immortalwrt-sdk
+            ./node_modules
+            ./target
+          key: ${{ runner.os }}-sdk-${{ hashFiles('**/Cargo.lock') }}
 
-    - name: Install feeds
-      run: |
-        cd openwrt
-        ./scripts/feeds install -a
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
 
-    - name: Configure packages
-      run: |
-        cd openwrt
-        cat > .config <<EOF
-        CONFIG_TARGET_x86=y
-        CONFIG_TARGET_x86_64=y
-        CONFIG_TARGET_x86_64_Generic=y
-        CONFIG_PACKAGE_smartdns-ui=y
-        CONFIG_PACKAGE_smartdns-webui=y
-        EOF
-        make defconfig
-          
-    - name: Download package
-      id: package
-      run: |
-        cd openwrt
-        make clean
-        make dirclean
-        make package/feeds/packages/net/smartdns/compile
-        
-    - name: Archive IPK files
-      run: |
-        mkdir -p output
-        find openwrt/bin/packages/ -name "*smartdns*.ipk" -exec cp {} output/ \;
+      - name: Setup Rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
 
-    - name: Upload IPKs to GitHub Release
-      uses: softprops/action-gh-release@v1
-      with:
-        files: output/*.ipk
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        
-    - name: Delete workflow runs
-      uses: GitRML/delete-workflow-runs@main
-      with:
-        retain_days: 7
-        keep_minimum_runs: 7
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential libncurses5-dev gawk flex bison gettext wget zstd
 
-    - name: Remove old Releases
-      uses: dev-drprasad/delete-older-releases@v0.1.0
-      if: env.UPLOAD_RELEASE == 'true' && !cancelled()
-      with:
-        keep_latest: 7
-        delete_tags: true
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Download ImmortalWrt SDK
+        run: |
+          wget "$SDK_URL" -O immortalwrt-sdk.tar.zst
+          tar -I zstd -xf immortalwrt-sdk.tar.zst
+          SDK_DIR=$(ls -d immortalwrt-sdk-*/)
+          mv "$SDK_DIR" immortalwrt-sdk
+
+      - name: Copy smartdns package into SDK
+        run: |
+          mkdir -p immortalwrt-sdk/package/smartdns
+          cp -r ./package/smartdns/* immortalwrt-sdk/package/smartdns/
+
+      - name: Setup SDK config
+        working-directory: immortalwrt-sdk
+        run: |
+          make defconfig
+
+      - name: Build smartdns-ui package
+        working-directory: immortalwrt-sdk
+        run: |
+          make package/smartdns-ui/compile V=s -j$(nproc)
+
+      - name: Prepare release artifacts
+        run: |
+          mkdir -p release
+          find immortalwrt-sdk/bin/packages/ -name "*.ipk" -exec cp {} release/ \;
+          if [ ! -f release/*.ipk ]; then
+            echo "::error::No IPK files found in release directory!"
+            exit 1
+          fi
+          echo "Listing release artifacts:"
+          ls -la release
+
+      - name: Create GitHub Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+
+      - name: Upload IPK Files to Release
+        uses: actions/upload-release-asset@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: release/*.ipk
+          asset_name: smartdns-ui-ipk
+          asset_content_type: application/octet-stream
