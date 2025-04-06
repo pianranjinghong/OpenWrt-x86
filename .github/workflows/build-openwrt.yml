@@ -77,8 +77,9 @@ jobs:
             gettext \
             wget \
             zstd \
-            git
-
+            git \
+            npm
+ 
       - name: Download ImmortalWrt SDK
         run: |
           wget "$SDK_URL" -O immortalwrt-sdk.tar.zst
@@ -86,20 +87,21 @@ jobs:
           SDK_DIR=$(ls -d immortalwrt-sdk-*/)
           mv "$SDK_DIR" immortalwrt-sdk
 
-      - name: Copy smartdns package into SDK
-        run: |
-          mkdir -p immortalwrt-sdk/package/smartdns
-          # 复制整个 smartdns 包到 SDK 的 package 目录
-          cp -r ./package/smartdns/. immortalwrt-sdk/package/smartdns/
+      
 
       - name: Update and Install Feeds
         working-directory: immortalwrt-sdk
         run: |
           ./scripts/feeds update -a
           ./scripts/feeds install -a
-          ls feeds/packages/lang/rust
-          find immortalwrt-sdk/ -name "rust-package.mk"
+          
 
+      - name: Copy smartdns package into SDK
+        run: |
+          rm -rf immortalwrt-sdk/feeds/packages/net/smartdns/
+          # 复制整个 smartdns 包到 SDK 的 package 目录
+          cp -r ./package/smartdns/. immortalwrt-sdk/feeds/packages/net/smartdns/
+      
       - name: Setup SDK Configuration
         working-directory: immortalwrt-sdk
         run: |
@@ -114,8 +116,8 @@ jobs:
         env:
           MAKEFLAGS: "-j$(nproc)"
         run: |
-          make package/smartdns/compile V=s
-          make package/smartdns/clean
+          make ./feeds/packages/net/smartdns/compile V=s
+          make ./feeds/packages/net/smartdns/clean
 
       - name: Prepare Release Artifacts
         run: |
