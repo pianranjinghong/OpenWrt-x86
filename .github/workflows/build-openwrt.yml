@@ -47,6 +47,17 @@ jobs:
             ${{ runner.os }}-sdk-
         if: steps.cache-inputs.outputs.cache == 'true'
 
+      - name: Download smartdns Makefile from pymumu's repo
+        run: |
+          # 克隆 pymumu 的 smartdns 仓库到临时目录
+          git clone https://github.com/pymumu/openwrt-smartdns.git
+          # 创建目标目录
+          mkdir -p package/smartdns
+          # 复制 Makefile 和源代码到本地 package/smartdns 目录
+          cp -r openwrt-smartdns/* package/smartdns/
+          # 清理临时仓库
+          rm -rf openwrt-smartdns
+
       - name: Verify package directory exists
         run: |
           if [ ! -d "./package/smartdns" ]; then
@@ -78,6 +89,7 @@ jobs:
       - name: Copy smartdns package into SDK
         run: |
           mkdir -p immortalwrt-sdk/package/smartdns
+          # 复制整个 smartdns 包到 SDK 的 package 目录
           cp -r ./package/smartdns/. immortalwrt-sdk/package/smartdns/
 
       - name: Configure OpenWrt Official Feeds
@@ -102,10 +114,10 @@ jobs:
         working-directory: immortalwrt-sdk
         run: |
           make defconfig
-          # 自定义配置（根据需要启用依赖项）
-          # echo 'CONFIG_PACKAGE_smartdns=y' >> .config
+          # 启用 smartdns 及其依赖项（根据 Makefile 配置）
+          echo 'CONFIG_PACKAGE_smartdns=y' >> .config
           echo 'CONFIG_PACKAGE_smartdns-ui=y' >> .config
-          echo 'CONFIG_PACKAGE_smartdns-webui=y' >> .config
+          echo 'CONFIG_PACKAGE_smartdns-webui=y' >> .config  # 如果有 LuCI 插件
 
       - name: Build smartdns-ui Package
         working-directory: immortalwrt-sdk
@@ -113,7 +125,7 @@ jobs:
           MAKEFLAGS: "-j$(nproc)"
         run: |
           make package/smartdns-ui/compile V=s
-          make package/smartdns-ui/clean  # 清理临时文件
+          make package/smartdns-ui/clean
 
       - name: Prepare Release Artifacts
         run: |
