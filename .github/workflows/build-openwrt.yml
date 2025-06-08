@@ -60,8 +60,8 @@ jobs:
         apt_clean: "True"
         homebrew_prune: "True"
         homebrew_clean: "True"
-        #npm_prune: "True"
-        #npm_clean: "True"
+        npm_prune: "True"
+        npm_clean: "True"
         os_swap: "True"
 
     - name: Free Disk Space (Ubuntu)
