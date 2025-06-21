@@ -23,7 +23,7 @@
 rm -rf feeds/luci/themes/luci-theme-argon
 
 git clone https://github.com/kiddin9/luci-theme-edge package/kiddin9/luci-theme-edge
-git clone https://github.com/jerrykuku/luci-theme-argon feeds/luci/themes/luci-theme-argon
+#git clone https://github.com/jerrykuku/luci-theme-argon feeds/luci/themes/luci-theme-argon
 #git clone -b js https://github.com/sirpdboy/luci-theme-kucat package/sirpdboy/luci-theme-kucat
 
 # ------------------PassWall 科学上网--------------------------
@@ -36,7 +36,7 @@ git clone https://github.com/jerrykuku/luci-theme-argon feeds/luci/themes/luci-t
 rm -rf feeds/packages/net/{v2ray-geodata,mosdns}
 rm -rf feeds/packages/net/smartdns
 
-git clone https://github.com/pymumu/openwrt-smartdns.git feeds/packages/net/smartdns
+git clone https://github.com/pymumu/openwrt-smartdns.git package/pymumu/smartdns
 git clone https://github.com/pianranjinghong/v2ray-geodata feeds/packages/net/v2ray-geodata
 #git clone https://github.com/xiaorouji/openwrt-passwall feeds/luci/applications/luci-app-passwall
 git clone https://github.com/xiaorouji/openwrt-passwall2 package/xiaorouji/luci-app-passwall2
