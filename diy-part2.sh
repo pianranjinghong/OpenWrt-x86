@@ -20,8 +20,8 @@ sed -i 's/geoip-only-cn-private.dat/geoip.dat/g' feeds/packages/net/v2ray-geodat
 sed -i 's/--set=llvm.download-ci-llvm=true/--set=llvm.download-ci-llvm=false/' feeds/packages/lang/rust/Makefile   # 修复rust编译失败
 
 
-sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci-light/Makefile   # 选择argon为默认主题
-sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci-nginx/Makefile   # 选择argon为默认主题
+sed -i 's/luci-theme-bootstrap/luci-theme-edge/g' feeds/luci/collections/luci-light/Makefile   # 选择argon为默认主题
+sed -i 's/luci-theme-bootstrap/luci-theme-edge/g' feeds/luci/collections/luci-nginx/Makefile   # 选择argon为默认主题
 
 
 sed -i 's/+uhttpd +uhttpd-mod-ubus //g' feeds/luci/collections/luci-light/Makefile    # 删除uhttpd
