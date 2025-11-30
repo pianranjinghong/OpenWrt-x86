@@ -23,10 +23,10 @@
 
 #rm -rf feeds/luci/applications/luci-app-passwall
 rm -rf feeds/packages/net/v2ray-geodata
-rm -rf feeds/packages/net/smartdns
-rm -rf feeds/luci/applications/luci-app-smartdns
+#rm -rf feeds/packages/net/smartdns
+#rm -rf feeds/luci/applications/luci-app-smartdns
 
-git clone https://github.com/pymumu/openwrt-smartdns.git feeds/packages/net/smartdns
+#git clone https://github.com/pymumu/openwrt-smartdns.git feeds/packages/net/smartdns
 git clone https://github.com/pianranjinghong/v2ray-geodata feeds/packages/net/v2ray-geodata
 #git clone https://github.com/xiaorouji/openwrt-passwall feeds/luci/applications/luci-app-passwall
 git clone https://github.com/xiaorouji/openwrt-passwall2 package/xiaorouji/luci-app-passwall2
