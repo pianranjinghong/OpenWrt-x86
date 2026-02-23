@@ -13,12 +13,12 @@ name: Update Checker
 
 env:
   REPO_URL: https://github.com/immortalwrt/immortalwrt
-  REPO_BRANCH: master
+  REPO_BRANCH: openwrt-25.12
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: 0 10 */3 * *
+    - cron: 0 10 */5 * *
 
 jobs:
   check:
