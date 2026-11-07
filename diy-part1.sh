@@ -33,11 +33,38 @@ git clone https://github.com/pianranjinghong/v2ray-geodata feeds/packages/net/v2
 git clone -b openwrt https://github.com/pianranjinghong/openwrt-packages package/pianranjinghong
 #git clone -b v5 https://github.com/sbwml/luci-app-mosdns package/sbwml/luci-app-mosdns
 
-rm -rf package/Openwrt-Passwall/openwrt-passwall2/luci-app-passwall2/htdocs
+#rm -rf package/Openwrt-Passwall/openwrt-passwall2/luci-app-passwall2/htdocs
+
+#git clone https://github.com/pymumu/luci-app-smartdns feeds/luci/applications/luci-app-smartdns
+
 rm -rf feeds/packages/net/tailscale
 rm -rf feeds/luci/applications/luci-app-tailscale-community
 
-# 2. 用 SVN 只导出目标子文件夹
-svn export --force https://github.com/Tokisaki-Galaxy/luci-app-tailscale-community/trunk/luci-app-tailscale-community feeds/luci/applications/luci-app-tailscale-community
-#git clone https://github.com/pymumu/luci-app-smartdns feeds/luci/applications/luci-app-smartdns
-svn export https://github.com/GuNanOvO/openwrt-tailscale/trunk/package/tailscale feeds/package/net/tailscale
+mkdir -p feeds/packages/net feeds/luci/applications
+
+# 2. 下载 Tailscale 核心，只检出 package/tailscale
+TMP_TS=/tmp/ts-sparse
+rm -rf "$TMP_TS"
+git clone --depth 1 --filter=blob:none --sparse --branch main \
+  https://github.com/GuNanOvO/openwrt-tailscale.git "$TMP_TS"
+(
+  cd "$TMP_TS"
+  git sparse-checkout init --cone
+  git sparse-checkout set package/tailscale
+)
+mv "$TMP_TS/package/tailscale" feeds/packages/net/tailscale
+rm -rf "$TMP_TS"
+
+# 3. 下载 LuCI 界面，只检出 luci-app-tailscale-community
+TMP_LUCI=/tmp/luci-ts-sparse
+rm -rf "$TMP_LUCI"
+git clone --depth 1 --filter=blob:none --sparse --branch master \
+  https://github.com/Tokisaki-Galaxy/luci-app-tailscale-community.git "$TMP_LUCI"
+(
+  cd "$TMP_LUCI"
+  git sparse-checkout init --cone
+  git sparse-checkout set luci-app-tailscale-community
+)
+mv "$TMP_LUCI/luci-app-tailscale-community" \
+   feeds/luci/applications/luci-app-tailscale-community
+rm -rf "$TMP_LUCI"
